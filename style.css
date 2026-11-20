@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffd6e7, #f6b5d0);
+    color: #8c3155;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #b52c66;
+    animation: fadeIn 1.5s ease;
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #99506c;
+}
+
+/* Envelope */
+
+.envelope-area {
+    margin-top: 70px;
+    margin-bottom: 30px;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 190px;
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #e99ab9;
+    border-radius: 6px;
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: #f6bad0;
+    clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+    z-index: 3;
+}
+
+.flap {
+    position: absolute;
+    inset: 0;
+    background: #d97da5;
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 5;
+}
+
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+    background: #fffafd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: transform 1s ease;
+    z-index: 2;
+}
+
+.letter span {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #c13d77;
+}
+
+.letter small {
+    color: #a85d7e;
+}
+
+.seal {
+    position: absolute;
+    top: 67px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #cf477e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    z-index: 6;
+    transition: opacity 0.4s;
+    box-shadow: 0 3px 10px #b95880;
+}
+
+/* Open envelope */
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .letter {
+    transform: translateY(-115px);
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+/* Button */
+
+.open-btn {
+    border: none;
+    padding: 14px 30px;
+    border-radius: 40px;
+    background: #c83d76;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(175, 54, 105, 0.25);
+    transition: 0.3s;
+}
+
+.open-btn:hover {
+    transform: scale(1.05);
+    background: #aa2c61;
+}
+
+/* Birthday content */
+
+.birthday-content {
+    max-width: 380px;
+    margin-top: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: all 1.2s ease;
+}
+
+.birthday-content.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Photo */
+
+.photo-card {
+    width: 230px;
+    height: 290px;
+    padding: 8px;
+    background: white;
+    border-radius: 18px;
+    margin: 0 auto 25px;
+    box-shadow: 0 10px 35px rgba(150, 40, 80, 0.2);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.birthday-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #bf306a;
+    line-height: 1.5;
+    animation: glowing 2s infinite alternate;
+}
+
+.birthday-title span {
+    display: block;
+    font-size: 28px;
+    color: #d84d87;
+}
+
+.message {
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 14px;
+}
+
+.message p {
+    margin-bottom: 15px;
+}
+
+.final-wish {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: #c12868;
+}
+
+/* Floating hearts */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    animation: floatHeart linear forwards;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Animations */
+
+@keyframes glowing {
+    from {
+        text-shadow: 0 0 5px #ffc0d9;
+    }
+
+    to {
+        text-shadow: 0 0 20px #ff78ac;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 27px;
+    }
+
+    .birthday-title {
+        font-size: 30px;
+    }
+
+    .birthday-title span {
+        font-size: 25px;
+    }
+
+    .envelope {
+        width: 260px;
+    }
+}
